@@ -7,6 +7,8 @@ class NewPerson extends Component {
             {name: "Asif", age: 25}
         ]
     }
+
+
     handler = (newName)=> {
         this.setState({
             person: [
@@ -15,6 +17,8 @@ class NewPerson extends Component {
             ]
         })
     }
+
+
     changeHandler = (event)=> {
         this.setState({
             person: [
@@ -23,6 +27,7 @@ class NewPerson extends Component {
             ]
         })
     }
+    
     render() {
         const style = {
             background: "green",
