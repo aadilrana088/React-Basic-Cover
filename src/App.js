@@ -22,13 +22,13 @@ class App extends Component {
       <div>
         {/* <FuctionComp />
         <ClassComp /> */}
-        {/* <NewPerson /> */}
+        <NewPerson />
         {/* <UserInput handler = {this.handler} userName={this.state.userName}/>
         <UserOutput userName={this.state.userName} />
         <UserOutput userName={this.state.userName} />
         <UserOutput userName="Asif"/> */}
         {/* <ListPerson/> */}
-        <ListAssignmentApp />
+        {/* <ListAssignmentApp /> */}
         {/* <button onClick={this.handler}>Change</button> */}
       </div>
     );

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import NewPersonChid from './NewPersonChid'
-
 class NewPerson extends Component {
     state = {
         person: [

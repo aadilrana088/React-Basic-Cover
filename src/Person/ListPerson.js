@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Person from "./Person";
+import '../App.css'
 class ListPerson extends Component {
   state = {
     persons: [
@@ -38,14 +39,21 @@ class ListPerson extends Component {
     //This is not a good approch, we should create a copy of array and then assign it to setstate method as below
     // const person = this.state.person.slice();   this is an older aproch to create a new copy
     // new one is using spread operator
-    const person = [...this.state.person];
+    const person = [...this.state.persons];
     person.splice(personIndex, 1);
     this.setState({
-      person: person,
+      persons: person,
     });
   };
   
   render() {
+    const style = {
+      backgroundColor: 'green',
+      color: 'white',
+      border: '1px solid #eee',
+      padding: '10px',
+      margin: '20px'
+    }
     let persons = null;
     if (this.state.showPerson) {
       persons = (
@@ -77,10 +85,23 @@ class ListPerson extends Component {
           /> */}
         </div>
       );
+      style.backgroundColor = 'red'
     }
+    let classes  = ["red","bold"].join(" ")
+
+    let classesArray = [];
+    if(this.state.persons.length <=2 ) {
+      classesArray.push("red");
+    }
+    if(this.state.persons.length <=1 ) {
+      classesArray.push("bold");
+    }
+
     return (
-      <div>
-        <button onClick={this.togglePerson}>Toggle Person</button>
+      <div className="App">
+        <button style={style} onClick={this.togglePerson}>Toggle Person</button>
+        <p className= {classes}>This will be styling paragraph</p>
+        <p className= {classesArray.join(" ")}>This will be conditional styling paragraph</p>
         {persons}
       </div>
     );
