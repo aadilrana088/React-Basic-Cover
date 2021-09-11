@@ -7,6 +7,7 @@ import NewPerson from "./Person/NewPerson";
 import UserOutput from "./Assignment/UserOutput";
 import UserInput from "./Assignment/UserInput";
 import ListPerson from "./Person/ListPerson"
+import ListAssignmentApp from './Assignment/ListAssignmentApp'
 class App extends Component {
   state = {
     userName: "Aadil Rana"
@@ -26,7 +27,8 @@ class App extends Component {
         <UserOutput userName={this.state.userName} />
         <UserOutput userName={this.state.userName} />
         <UserOutput userName="Asif"/> */}
-        <ListPerson/>
+        {/* <ListPerson/> */}
+        <ListAssignmentApp />
         {/* <button onClick={this.handler}>Change</button> */}
       </div>
     );
