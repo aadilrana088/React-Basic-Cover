@@ -1,6 +1,19 @@
 import React, { Component } from "react";
+import ErrorBoundry from "./ErrorBoundry";
 import Person from "./Person";
-import '../App.css'
+import "../App.css";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  background: ${(props) => (props.alt ? "red" : "green")};
+  color: white;
+  fontsize: 20px;
+  padding: 8px 15px;
+  &:hover {
+    background: ${(props) => (props.alt ? "salmon" : "lightgreen")};
+    color: black;
+  }
+`;
 class ListPerson extends Component {
   state = {
     persons: [
@@ -16,7 +29,7 @@ class ListPerson extends Component {
     });
 
     const person = {
-      ...this.state.persons[personsIndex]
+      ...this.state.persons[personsIndex],
     };
 
     person.name = event.target.value;
@@ -45,30 +58,31 @@ class ListPerson extends Component {
       persons: person,
     });
   };
-  
+
   render() {
     const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      border: '1px solid #eee',
-      padding: '10px',
-      margin: '20px'
-    }
+      backgroundColor: "green",
+      color: "white",
+      border: "1px solid #eee",
+      padding: "10px",
+      margin: "20px",
+    };
     let persons = null;
     if (this.state.showPerson) {
       persons = (
         <div>
           {this.state.persons.map((prsn, index) => {
             return (
-              <Person
-                name={prsn.name}
-                age={prsn.age}
-                click={() => this.deletePerson(index)}
-                key={prsn.id}
-                changed={(event) => {
-                  this.nameChangeHandler(event, prsn.id);
-                }}
-              />
+              <ErrorBoundry key={prsn.id}>
+                <Person
+                  name={prsn.name}
+                  age={prsn.age}
+                  click={() => this.deletePerson(index)}
+                  changed={(event) => {
+                    this.nameChangeHandler(event, prsn.id);
+                  }}
+                />
+              </ErrorBoundry>
             );
           })}
           {/* <Person
@@ -85,23 +99,27 @@ class ListPerson extends Component {
           /> */}
         </div>
       );
-      style.backgroundColor = 'red'
+      style.backgroundColor = "red";
     }
-    let classes  = ["red","bold"].join(" ")
+    let classes = ["red", "bold"].join(" ");
 
     let classesArray = [];
-    if(this.state.persons.length <=2 ) {
+    if (this.state.persons.length <= 2) {
       classesArray.push("red");
     }
-    if(this.state.persons.length <=1 ) {
+    if (this.state.persons.length <= 1) {
       classesArray.push("bold");
     }
 
     return (
       <div className="App">
-        <button style={style} onClick={this.togglePerson}>Toggle Person</button>
-        <p className= {classes}>This will be styling paragraph</p>
-        <p className= {classesArray.join(" ")}>This will be conditional styling paragraph</p>
+        <StyledButton alt={this.state.showPerson} onClick={this.togglePerson}>
+          Toggle Person
+        </StyledButton>
+        <p className={classes}>This will be styling paragraph</p>
+        <p className={classesArray.join(" ")}>
+          This will be conditional styling paragraph
+        </p>
         {persons}
       </div>
     );
